@@ -18,7 +18,7 @@ BIN= ./bin
 
 exec= $(BIN)/server $(BIN)/client
 
-$(BIN)/%: $(SRC)/%.c $(SRC)/rps.h
+$(BIN)/%: $(SRC)/%.c $(SRC)/%.h $(SRC)/rps.h
 	@mkdir -p bin
 	$(CC) $(CCFLAGS) $< -o $@
 

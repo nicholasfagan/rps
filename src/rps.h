@@ -4,12 +4,19 @@
  * B00767175
  */
 #include <stdlib.h>
+
+
+/*** DEFINITIONS ***/
+#ifndef RPS_VER
+#define RPS_VER 1.0
+
+
+/*** STRUCTURES ***/
 enum Move {
 	Rock = 0x3030,
 	Paper = 0x3031,
 	Scissors = 0x3032
 };
-enum Move moves[3] = {Rock,	Paper, Scissors};
 enum Status {
 	Tie,
 	P1Win,
@@ -20,6 +27,25 @@ struct Game {
 	enum Move p2_move;
 	enum Status winner;
 };
+
+/*** CONSTANTS ***/
+const enum Move moves[3] = {Rock, Paper, Scissors};
+
+/*** FUNCTION DECLARATIONS ***/
+
+char charFromMove(enum Move m);
+enum Move moveFromChar(char m);
+int isValidMoveChar(char m);
+int isValidMove(enum Move m);
+int isValidStatus(enum Status s);
+int isValidGame(struct Game g);
+enum Status whoWins(enum Move p1_move, enum Move p2_move);
+void printMove(enum Move m);
+void printStatus(enum Status s);
+void printGame(struct Game g);
+
+/*** FUNCTION DEFINITIONS ***/
+
 char charFromMove(enum Move m) {
 	switch(m) {
 		case Rock:
@@ -54,6 +80,19 @@ enum Move moveFromChar(char m) {
 
 int isValidMoveChar(char m) {
 	return m=='R'||m=='P'||m=='S';
+}
+
+int isValidMove(enum Move m) {
+	return m==Rock||m==Paper||m==Scissors;
+}
+
+int isValidStatus(enum Status s) {
+	return s==Tie||s==P2Win||s==P1Win;
+}
+int isValidGame(struct Game g) {
+	return isValidMove(g.p1_move)
+		&& isValidMove(g.p2_move)
+		&& isValidStatus(g.winner);
 }
 enum Status whoWins(enum Move p1_move, enum Move p2_move) {
 	if (p1_move == p2_move) return Tie;
@@ -97,3 +136,5 @@ void printGame(struct Game g) {
 	printStatus(g.winner);
 	printf("!\n");
 }
+
+#endif
