@@ -1,3 +1,8 @@
+/* RPS client utils
+ * Feb 25th 2019
+ * Nick Fagan
+ * B00767175
+ */
 #include <stdlib.h>
 #include <stddef.h>
 #include <stdio.h>

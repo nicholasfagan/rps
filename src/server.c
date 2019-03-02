@@ -26,16 +26,23 @@ int handle(int socket) {
 	if(socket < 0) {
 		return EXIT_FAILURE;
 	}
+	printf("Client Connected.\n");
 	while(1) {
 		enum Move p1_move;
-		if(sizeof(enum Move) != read(socket, &p1_move, sizeof(enum Move))) {
+		size_t len_rec = read(socket, &p1_move, sizeof(enum Move));
+		if(len_rec == 0) {
 			fprintf(stderr, "rpsserver: client disconnected.\n");
+			break;
+		}else if(sizeof(enum Move) != len_rec) {
+			fprintf(stderr, "rpsserver: client sent malformed move.\n");
 			break;
 		}
 
 		//validate Move
 		if(! isValidMove(p1_move)) {
 			fprintf(stderr, "rpsserver: client sent invalid move.\n");
+			fprintf(stderr, "client sent 0x%X\n", p1_move);
+			fprintf(stderr, "expected one of [0x%X, 0x%X, 0x%X]\n",Rock,Paper,Scissors);
 			break;
 		}
 		

@@ -1,4 +1,8 @@
-
+/* RPS server utils
+ * Feb 25th 2019
+ * Nick Fagan
+ * B00767175
+ */
 #include <stdlib.h>
 #include <stddef.h>
 #include <stdio.h>
@@ -9,6 +13,7 @@
 #include "rps.h"
 
 /*** DEFINITIONS ***/
+//mult-include protection
 #ifndef RPSS_VER
 #define RPSS_VER 1.0
 #define RPSS_NAME "rpsserver"

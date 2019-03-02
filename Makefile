@@ -3,13 +3,11 @@
 # Nick Fagan
 # B00767175 
 
-RPS=R
-
 PORT=1337
 HOST=127.0.0.1
 
 CC= /usr/bin/gcc
-CCFLAGS= -std=c99 -Wall
+CCFLAGS= -std=c99 -Wall -Ofast
 
 PREFIX= /usr/bin
 
@@ -18,8 +16,10 @@ BIN= ./bin
 
 exec= $(BIN)/server $(BIN)/client
 
+all: build
+
 $(BIN)/%: $(SRC)/%.c $(SRC)/%.h $(SRC)/rps.h
-	@mkdir -p bin
+	@mkdir -p $(BIN)
 	$(CC) $(CCFLAGS) $< -o $@
 
 server: $(BIN)/server

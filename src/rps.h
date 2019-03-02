@@ -1,4 +1,4 @@
-/** Rock Paper Scissors Shared Functions
+/** Rock Paper Scissors Shared utils
  * Feb 25th 2019
  * Nick Fagan
  * B00767175
@@ -13,14 +13,14 @@
 
 /*** STRUCTURES ***/
 enum Move {
-	Rock = 0x3030,
-	Paper = 0x3031,
-	Scissors = 0x3032
+	Rock     = 0x0A0D6F52,//Ro\r\n
+	Paper    = 0x0A0D6150,//Pa\r\n
+	Scissors = 0x0A0D6353 //Sc\r\n
 };
 enum Status {
-	Tie,
-	P1Win,
-	P2Win,
+	Tie   = 0x0A0D6954,//Ti\r\n
+	P1Win = 0x0A0D3150,//P1\r\n
+	P2Win = 0x0A0D3250 //P2\r\n
 };
 struct Game {
 	enum Move p1_move;
